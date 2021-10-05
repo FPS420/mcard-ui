@@ -1,0 +1,15 @@
+<div class="card" [ngClass]="{ 'active-card' : selected }">
+
+    <div class="card-header">
+        <h2 class="title">{{business?.name}} </h2>
+    </div>
+
+    <div class="card-body">
+        <p>Resturant: {{business?.name}}</p>
+        <p>Ort: {{business?.city }}, {{business?.zip}}</p>
+        <p>
+            <button (click)=" selectBusiness(business!)">Anzeigen</button>
+        </p>
+    </div>
+
+</div>
