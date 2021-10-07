@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Business } from '../Business';
-import { Menu } from '../Menu';
-import { Food } from '../Food';
-
-
-
+import { IMenu } from '../Menu';
+import {path} from "../globals";
 
 @Component({
   selector: 'app-menu-search',
@@ -13,17 +10,13 @@ import { Food } from '../Food';
   styleUrls: ['./menu-search.component.scss']
 })
 export class MenuSearchComponent implements OnInit {
-
-
   businesses: Array<Business> = [];
-  menuCard: Menu = new Menu("1212", [new Food("TEST",2, "testdiscription", "FOOD")], "owner");
+  menuCard: IMenu  | null = null;
 
   selectedBusiness: Business | null = null;
   businessIsSelected = false;
   menuCardIsLoaded = false;
 
-  // request settings
-  path = 'http://localhost:8080/'
 
   constructor(private http: HttpClient) { }
 
@@ -35,11 +28,11 @@ export class MenuSearchComponent implements OnInit {
     this.businesses = bs
   }
   async getMenuCard() {
-    const url = this.path + this.selectedBusiness?.name + '/mcard'
+    const url = path + this.selectedBusiness?.name + '/mcard'
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
 
-    this.http.get<Menu>(url, { headers }).subscribe({
+    this.http.get<IMenu>(url, { headers }).subscribe({
       next: (menu) => {
         this.menuCard = menu
       },
@@ -65,7 +58,7 @@ export class MenuSearchComponent implements OnInit {
   }
   resetState() {
     this.businessIsSelected = false;
-    this.menuCard =  new Menu("1212", [new Food("TEST",2, "testdiscription", "FOOD")], "owner");
+    this.menuCard =  null;
     this.selectedBusiness = null;
     this.businessIsSelected = false;
     this.menuCardIsLoaded = false;

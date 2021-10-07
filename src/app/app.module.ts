@@ -11,6 +11,8 @@ import { BusinessCardComponent } from './business-card/business-card.component';
 
 import { MenuSearchBarComponent } from './menu-search-bar/menu-search-bar.component';
 import { MenuCardComponent } from './menu-card/menu-card.component';
+import { MenuCardPermaComponent } from './menu-card-perma/menu-card-perma.component';
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { MenuCardComponent } from './menu-card/menu-card.component';
     MenuSearchComponent,
     BusinessCardComponent,
     MenuSearchBarComponent,
-    MenuCardComponent
+    MenuCardComponent,
+    MenuCardPermaComponent,
+    NavComponent
   ],
   imports: [
     HttpClientModule,

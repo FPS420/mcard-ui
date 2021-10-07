@@ -1,16 +1,13 @@
-<div>
+<div *ngIf="menuIsLoaded">
   <div>
-    <h2 style="text-align: center;">{{menuCard?.owner}}</h2>
+    <h2 style="text-align: center;">{{menu?.owner}}</h2>
   </div>
-  <div *ngFor="let item of menuCard?.items" class="card" style="margin: 10px">
+  <div *ngFor="let item of menu?.items" class="card" style="margin: 10px">
     <div class="card-body">
       <h5 class="card-title">{{item.name}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{item.price}}€</h6>
       <p>{{item.description}}</p>
     </div>
   </div>
-
 </div>
-
-
 
