@@ -1,19 +1,28 @@
-<div class="form-group">
-    <button class="btn btn-default" (click)="searchBusiness()">
-        Search
-    </button>
-</div>
-<div class="form-group">
-    <input [(ngModel)]="search_term" class="form-control" placeholder="mcdonalds">
-</div>
-<div *ngIf="!businessIsSelected">
-    <div *ngFor="let item of businesses" class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3">
-        <app-business-card  (selectBusinessEvent)="updateSelectedBusiness($event)" [business]="item">
-        </app-business-card>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-2">
+
+        </div>
+        <div class="col-md-auto">
+            <app-menu-search-bar (searchEvent)="resetState()" (compareBusinessesEvent)="updateBusinesses($event)">
+            </app-menu-search-bar>
+        </div>
+        <div class="col col-lg-2">
+
+        </div>
+    </div>
+
+    <div class="row" *ngIf="!businessIsSelected">
+        <div class="col" *ngFor="let item of businesses">
+            <app-business-card (selectBusinessEvent)="updateSelectedBusiness($event)" [business]="item">
+            </app-business-card>
+        </div>
+    </div>
+    <div class="row" *ngIf="menuCardIsLoaded">
+        <app-menu-card [menuCard]="menuCard"></app-menu-card>
     </div>
 </div>
 
 
-<div *ngIf="menuCardIsLoaded">
-    <div>{{menuCard|json}}</div>
-</div>
+
+

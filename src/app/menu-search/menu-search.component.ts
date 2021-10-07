@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Business } from '../Business';
-import { Food } from '../Food';
 import { Menu } from '../Menu';
+import { Food } from '../Food';
+
 
 
 
@@ -13,9 +14,9 @@ import { Menu } from '../Menu';
 })
 export class MenuSearchComponent implements OnInit {
 
-  search_term = 'laamigo'
+
   businesses: Array<Business> = [];
-  menuCard: Menu | null = null;
+  menuCard: Menu = new Menu("1212", [new Food("TEST",2, "testdiscription", "FOOD")], "owner");
 
   selectedBusiness: Business | null = null;
   businessIsSelected = false;
@@ -27,30 +28,12 @@ export class MenuSearchComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
 
-
-
   ngOnInit(): void {
   }
 
-  searchBusiness(): void {
-
-    this.resetState();
-
-    const url = this.path + 'search/' + this.search_term;
-    const headers = new HttpHeaders()
-      .set('Accept', 'application/json');
-
-
-    this.http.get<Business[]>(url, { headers }).subscribe({
-      next: (businesses) => {
-        this.businesses = businesses
-      },
-      error: (err) => {
-        console.error('Error', err);
-      }
-    });
+  updateBusinesses(bs: Business[]) {
+    this.businesses = bs
   }
-
   async getMenuCard() {
     const url = this.path + this.selectedBusiness?.name + '/mcard'
     const headers = new HttpHeaders()
@@ -82,8 +65,7 @@ export class MenuSearchComponent implements OnInit {
   }
   resetState() {
     this.businessIsSelected = false;
-    this.menuCard = null;
-    this.search_term = 'laamigo';
+    this.menuCard =  new Menu("1212", [new Food("TEST",2, "testdiscription", "FOOD")], "owner");
     this.selectedBusiness = null;
     this.businessIsSelected = false;
     this.menuCardIsLoaded = false;

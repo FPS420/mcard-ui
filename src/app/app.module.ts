@@ -9,12 +9,17 @@ import { AppComponent } from './app.component';
 import { MenuSearchComponent } from './menu-search/menu-search.component';
 import { BusinessCardComponent } from './business-card/business-card.component';
 
+import { MenuSearchBarComponent } from './menu-search-bar/menu-search-bar.component';
+import { MenuCardComponent } from './menu-card/menu-card.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuSearchComponent,
-    BusinessCardComponent
+    BusinessCardComponent,
+    MenuSearchBarComponent,
+    MenuCardComponent
   ],
   imports: [
     HttpClientModule,
