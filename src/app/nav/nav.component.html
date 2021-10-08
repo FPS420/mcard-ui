@@ -2,19 +2,30 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a href="http://localhost:4200/" class="navbar-brand">MCard</a>
-      <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
+
         <div class="navbar-nav">
           <a href="http://localhost:4200/" class="nav-item nav-link active">Suche</a>
         </div>
         <div class="navbar-nav ms-auto">
+          <div *ngIf="auth.user$ | async as user">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                 aria-expanded="false">{{user.email}}</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Speisekarte erstellen</a></li>
+                <li><a class="dropdown-item" href="#">Speisekarte bearbeiten</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Profil</a></li>
+              </ul>
+            </li>
+          </div>
           <app-auth-button></app-auth-button>
-         <!-- <a *ngIf="!auth.isAuthenticated$" (click)="auth.loginWithRedirect()" class="nav-item nav-link">Login</a>
-          <a *ngIf="auth.isAuthenticated$" (click)="auth.logout({ returnTo: document.location.origin })" class="nav-item nav-link">Logout</a>-->
         </div>
       </div>
     </div>
   </nav>
 </div>
+
