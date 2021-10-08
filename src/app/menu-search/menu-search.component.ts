@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Business } from '../Business';
-import { IMenu } from '../Menu';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Business} from '../Business';
+import {IMenu} from '../Menu';
 import {path} from "../globals";
 
 @Component({
@@ -11,14 +11,15 @@ import {path} from "../globals";
 })
 export class MenuSearchComponent implements OnInit {
   businesses: Array<Business> = [];
-  menuCard: IMenu  | null = null;
+  menuCard: IMenu | null = null;
 
   selectedBusiness: Business | null = null;
   businessIsSelected = false;
   menuCardIsLoaded = false;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
 
   ngOnInit(): void {
@@ -27,12 +28,15 @@ export class MenuSearchComponent implements OnInit {
   updateBusinesses(bs: Business[]) {
     this.businesses = bs
   }
+
   async getMenuCard() {
-    const url = path + this.selectedBusiness?.name + '/mcard'
+    // @ts-ignore
+    const menuId = this.selectedBusiness?.menu_ids[0];
+    const url = path + 'mcard/'+ menuId;
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
 
-    this.http.get<IMenu>(url, { headers }).subscribe({
+    this.http.get<IMenu>(url, {headers}).subscribe({
       next: (menu) => {
         this.menuCard = menu
       },
@@ -43,12 +47,29 @@ export class MenuSearchComponent implements OnInit {
 
   }
 
-  loadMenuCard() {
-    this.getMenuCard().then(
-      () => {
-        this.menuCardIsLoaded = true;
+  async getBusinessById() {
+    const url = path + "/search/id/" + this.selectedBusiness?._id
+    const headers = new HttpHeaders()
+      .set('Accept', 'application/json');
+
+    this.http.get<Business>(url, {headers}).subscribe({
+      next: (b) => {
+        this.selectedBusiness = b
+      },
+      error: (err) => {
+        console.error('Error', err);
       }
-    );
+    });
+  }
+
+  loadMenuCard() {
+    this.getBusinessById().then(() => {
+      this.getMenuCard().then(
+        () => {
+          this.menuCardIsLoaded = true;
+        }
+      )
+    });
   }
 
   updateSelectedBusiness(b: Business) {
@@ -56,11 +77,11 @@ export class MenuSearchComponent implements OnInit {
     this.businessIsSelected = true;
     this.loadMenuCard();
   }
+
   resetState() {
     this.businessIsSelected = false;
-    this.menuCard =  null;
+    this.menuCard = null;
     this.selectedBusiness = null;
-    this.businessIsSelected = false;
     this.menuCardIsLoaded = false;
   }
 }
