@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { AuthService } from '@auth0/auth0-angular';
 import {Business} from '../Business';
 import {IMenu} from '../Menu';
 import {path} from "../globals";
@@ -18,7 +19,7 @@ export class MenuSearchComponent implements OnInit {
   menuCardIsLoaded = false;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,public auth: AuthService) {
   }
 
 

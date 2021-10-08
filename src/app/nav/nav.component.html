@@ -10,7 +10,9 @@
           <a href="http://localhost:4200/" class="nav-item nav-link active">Suche</a>
         </div>
         <div class="navbar-nav ms-auto">
-          <a href="" class="nav-item nav-link">Login</a>
+          <app-auth-button></app-auth-button>
+         <!-- <a *ngIf="!auth.isAuthenticated$" (click)="auth.loginWithRedirect()" class="nav-item nav-link">Login</a>
+          <a *ngIf="auth.isAuthenticated$" (click)="auth.logout({ returnTo: document.location.origin })" class="nav-item nav-link">Logout</a>-->
         </div>
       </div>
     </div>

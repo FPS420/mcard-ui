@@ -13,6 +13,10 @@ import { MenuSearchBarComponent } from './menu-search-bar/menu-search-bar.compon
 import { MenuCardComponent } from './menu-card/menu-card.component';
 import { MenuCardPermaComponent } from './menu-card-perma/menu-card-perma.component';
 import { NavComponent } from './nav/nav.component';
+import { BusinessAreaComponent } from './business-area/business-area.component';
+
+import { AuthModule } from '@auth0/auth0-angular';
+import { AuthButtonComponent } from './auth-button/auth-button.component';
 
 
 @NgModule({
@@ -23,13 +27,19 @@ import { NavComponent } from './nav/nav.component';
     MenuSearchBarComponent,
     MenuCardComponent,
     MenuCardPermaComponent,
-    NavComponent
+    NavComponent,
+    BusinessAreaComponent,
+    AuthButtonComponent
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AuthModule.forRoot({
+      domain: 'dev-w1hpgidh.us.auth0.com',
+      clientId: 'q0v9xcmpRlk3owkH5ohY1SGePvDlxgcC'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
