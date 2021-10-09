@@ -17,6 +17,8 @@ import { BusinessAreaComponent } from './business-area/business-area.component';
 
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { AuthButtonComponent } from './auth-button/auth-button.component';
     MenuCardPermaComponent,
     NavComponent,
     BusinessAreaComponent,
-    AuthButtonComponent
+    AuthButtonComponent,
+    ProfileComponent
   ],
   imports: [
     HttpClientModule,
@@ -44,4 +47,4 @@ import { AuthButtonComponent } from './auth-button/auth-button.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

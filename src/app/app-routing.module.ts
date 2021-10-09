@@ -8,7 +8,7 @@ import {BusinessAreaComponent} from "./business-area/business-area.component";
 const routes: Routes = [
   {path: '', component: MenuSearchComponent},
   {path: 'mcard/:menuId', component: MenuCardPermaComponent},
-  {path: 'business/app', component: BusinessAreaComponent},
+  {path: 'app', component: BusinessAreaComponent},
   {path: '**', component: MenuSearchComponent}
 ];
 
