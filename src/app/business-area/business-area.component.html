@@ -13,27 +13,31 @@
     </div>
   </ng-template>
 </div>
+
+<!--Create new Business Form-->
 <div *ngIf="creatingBusiness && entrepreneur" class="container">
-  <form class="row g-3">
+  <form class="row g-3" [formGroup]="businessForm" (ngSubmit)="createBusiness()">
     <div class="col-md-6">
-      <label for="business_name" class="form-label">Name des Geschäfts</label>
-      <input type="text" class="form-control" id="business_name">
+      <label for="business_name" class="form-label" required>Name des Geschäfts</label>
+      <input type="text" formControlName="business_name" class="form-control" id="business_name">
     </div>
     <div class="col-md-6">
-      <label for="entrepreneur_id" class="form-label">Email</label>
-      <input readonly class="form-control-plaintext" id="entrepreneur_id" value="{{entrepreneur?.email}}">
+      <label class="form-label">Email</label>
+        <select class="form-select" formControlName="entrepreneur_id" >
+          <option value="{{entrepreneur?.email}}" selected>{{entrepreneur?.email}}</option>
+        </select>
     </div>
     <div class="col-12">
       <label for="inputAddress" class="form-label">Geschäftsadresse</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="Berliner Ring 12">
+      <input formControlName="street" type="text" class="form-control" id="inputAddress" placeholder="Berliner Ring 12">
     </div>
     <div class="col-md-6">
       <label for="city" class="form-label">Stadt</label>
-      <input type="text" class="form-control" id="city">
+      <input formControlName="city" type="text" class="form-control" id="city">
     </div>
     <div class="col-md-2">
       <label for="zip" class="form-label">Plz</label>
-      <input type="text" class="form-control" id="zip">
+      <input formControlName="zip" type="text" class="form-control" id="zip">
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary">Geschäft anlegen</button>

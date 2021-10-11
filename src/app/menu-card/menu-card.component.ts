@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IMenu } from '../Menu';
+import {IBusiness} from "../Business";
 
 @Component({
   selector: 'app-menu-card',

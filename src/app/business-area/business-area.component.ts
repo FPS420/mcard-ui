@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, Inject, OnInit} from '@angular/core';
 import {AuthService} from '@auth0/auth0-angular';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {path} from "../globals";
-import {Business, IBusiness} from "../Business";
+import {IBusiness} from "../Business";
 import {IEntrepreneur} from "../Entrepreneur";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -14,14 +15,21 @@ import {IEntrepreneur} from "../Entrepreneur";
 })
 export class BusinessAreaComponent implements OnInit, DoCheck {
 
-  businessFormData = new FormData()
+  businessForm: FormGroup;
   business: IBusiness | null = null;
   entrepreneur: IEntrepreneur | null = null;
   entrepreneurIsInitialized = false;
   creatingBusiness = false;
 
 
-  constructor(public auth: AuthService, private route: ActivatedRoute, private http: HttpClient) {
+  constructor(public auth: AuthService, private route: ActivatedRoute, private http: HttpClient, public fb: FormBuilder) {
+    this.businessForm = this.fb.group({
+      entrepreneur_id: [''],
+      business_name: [''],
+      street: [''],
+      city: [''],
+      zip: ['']
+    })
   }
 
 
@@ -58,11 +66,24 @@ export class BusinessAreaComponent implements OnInit, DoCheck {
     });
   }
 
-  switchCreatingBusinessMode(){
+  switchCreatingBusinessMode() {
     this.creatingBusiness = !this.creatingBusiness
   }
+
   createBusiness() {
-    //this.http.put<Business>(path + '/create/business', JSON.stringify(this.entrepreneur)).subscribe(data => {
-    //})
+    var formData: any = new FormData();
+    formData.append("entrepreneur_id", this.businessForm.get('entrepreneur_id')?.value);
+    formData.append("business_name", this.businessForm.get('business_name')?.value);
+    formData.append("street", this.businessForm.get('street')?.value);
+    formData.append("city", this.businessForm.get('city')?.value);
+    formData.append("zip", this.businessForm.get('zip')?.value);
+    this.http.post('http://localhost:8080/create/business', formData).subscribe(
+      (response) => (console.log(response), alert('Geschäft erfolgreich erstellt!'), this.refresh()),
+      (error) => console.log(error)
+    )
+  }
+
+  refresh() {
+    window.location.reload();
   }
 }

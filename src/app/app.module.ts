@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -43,6 +43,7 @@ import { BusinessCreatingFormComponent } from './business-creating-form/business
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-w1hpgidh.us.auth0.com',
       clientId: 'q0v9xcmpRlk3owkH5ohY1SGePvDlxgcC'
