@@ -18,6 +18,8 @@ import { BusinessAreaComponent } from './business-area/business-area.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { ProfileComponent } from './profile/profile.component';
+import { McardFormComponent } from './mcard-form/mcard-form.component';
+import { BusinessCreatingFormComponent } from './business-creating-form/business-creating-form.component';
 
 
 
@@ -32,7 +34,9 @@ import { ProfileComponent } from './profile/profile.component';
     NavComponent,
     BusinessAreaComponent,
     AuthButtonComponent,
-    ProfileComponent
+    ProfileComponent,
+    McardFormComponent,
+    BusinessCreatingFormComponent
   ],
   imports: [
     HttpClientModule,

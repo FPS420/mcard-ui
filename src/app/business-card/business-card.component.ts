@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Business } from '../Business';
+import { IBusiness } from '../Business';
 
 @Component({
     selector: 'app-business-card',
@@ -9,18 +9,18 @@ import { Business } from '../Business';
 })
 export class BusinessCardComponent {
 
-    @Input() business: Business | null = null;
+    @Input() business: IBusiness | null = null;
     @Input() selected = false;
-  
 
-    @Output() selectBusinessEvent = new EventEmitter<Business>();
+
+    @Output() selectBusinessEvent = new EventEmitter<IBusiness>();
     @Output() businessIsSelectedEvent = new EventEmitter<boolean>();
- 
-   
 
-    selectBusiness(b: Business){
+
+
+    selectBusiness(b: IBusiness){
         this.selectBusinessEvent.emit(b);
         this.businessIsSelectedEvent.emit(true);
     }
-   
+
 }

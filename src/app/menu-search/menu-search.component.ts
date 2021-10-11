@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
-import {Business} from '../Business';
+import {IBusiness} from '../Business';
 import {IMenu} from '../Menu';
 import {path} from "../globals";
 
@@ -11,22 +11,22 @@ import {path} from "../globals";
   styleUrls: ['./menu-search.component.scss']
 })
 export class MenuSearchComponent implements OnInit {
-  businesses: Array<Business> = [];
+  businesses: Array<IBusiness> = [];
   menuCard: IMenu | null = null;
 
-  selectedBusiness: Business | null = null;
+  selectedBusiness: IBusiness | null = null;
   businessIsSelected = false;
   menuCardIsLoaded = false;
 
 
-  constructor(private http: HttpClient,public auth: AuthService) {
+  constructor(private http: HttpClient) {
   }
 
 
   ngOnInit(): void {
   }
 
-  updateBusinesses(bs: Business[]) {
+  updateBusinesses(bs: IBusiness[]) {
     this.businesses = bs
   }
 
@@ -53,7 +53,7 @@ export class MenuSearchComponent implements OnInit {
     const headers = new HttpHeaders()
       .set('Accept', 'application/json');
 
-    this.http.get<Business>(url, {headers}).subscribe({
+    this.http.get<IBusiness>(url, {headers}).subscribe({
       next: (b) => {
         this.selectedBusiness = b
       },
@@ -73,7 +73,7 @@ export class MenuSearchComponent implements OnInit {
     });
   }
 
-  updateSelectedBusiness(b: Business) {
+  updateSelectedBusiness(b: IBusiness) {
     this.selectedBusiness = b;
     this.businessIsSelected = true;
     this.loadMenuCard();

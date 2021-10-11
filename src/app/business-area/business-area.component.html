@@ -1,6 +1,44 @@
-<div *ngIf="profileJson">
-  <app-profile [profil]="profileJson"></app-profile>
+<div class="container" *ngIf="!creatingBusiness">
+  <div *ngIf="entrepreneur">
+    <app-profile [entrepreneur]="entrepreneur"></app-profile>
+  </div>
+  <div *ngIf="business; else noBusiness">
+    <app-mcard-form [business]="business"></app-mcard-form>
+  </div>
+  <ng-template #noBusiness>Kein Geschäft vorhanden!
+    <div>
+      <button type="button" class="btn btn-outline-secondary" (click)="switchCreatingBusinessMode()">
+        Geschäft erstellen
+      </button>
+    </div>
+  </ng-template>
 </div>
-
+<div *ngIf="creatingBusiness && entrepreneur" class="container">
+  <form class="row g-3">
+    <div class="col-md-6">
+      <label for="business_name" class="form-label">Name des Geschäfts</label>
+      <input type="text" class="form-control" id="business_name">
+    </div>
+    <div class="col-md-6">
+      <label for="entrepreneur_id" class="form-label">Email</label>
+      <input readonly class="form-control-plaintext" id="entrepreneur_id" value="{{entrepreneur?.email}}">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Geschäftsadresse</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Berliner Ring 12">
+    </div>
+    <div class="col-md-6">
+      <label for="city" class="form-label">Stadt</label>
+      <input type="text" class="form-control" id="city">
+    </div>
+    <div class="col-md-2">
+      <label for="zip" class="form-label">Plz</label>
+      <input type="text" class="form-control" id="zip">
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Geschäft anlegen</button>
+    </div>
+  </form>
+</div>
 
 
