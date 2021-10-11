@@ -1,10 +1,31 @@
 <div class="container" *ngIf="!creatingBusiness">
+
+  <!--Profil-->
   <div *ngIf="entrepreneur">
     <app-profile [entrepreneur]="entrepreneur"></app-profile>
   </div>
+
+  <!--Business Area-->
   <div *ngIf="business; else noBusiness">
-    <app-mcard-form [business]="business"></app-mcard-form>
+
+    <div *ngIf="checkBusinessHasMenuCard(); else noMenu">
+      <h3>Speisekarte</h3>
+      <div *ngFor="let item of business?.menu_ids">
+        <button type="button" [routerLink]="['/mcard/',item]" class="btn btn-outline-secondary">
+           Menü ansehen
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noMenu>
+      <button type="button" [routerLink]="['/app/create/menu/',business.name]" class="btn btn-outline-secondary">
+        Menü erstellen
+      </button>
+    </ng-template>
+
   </div>
+
+  <!--Business does not exist-->
   <ng-template #noBusiness>Kein Geschäft vorhanden!
     <div>
       <button type="button" class="btn btn-outline-secondary" (click)="switchCreatingBusinessMode()">
@@ -23,9 +44,9 @@
     </div>
     <div class="col-md-6">
       <label class="form-label">Email</label>
-        <select class="form-select" formControlName="entrepreneur_id" >
-          <option value="{{entrepreneur?.email}}" selected>{{entrepreneur?.email}}</option>
-        </select>
+      <select class="form-select" formControlName="entrepreneur_id">
+        <option value="{{entrepreneur?.email}}" selected>{{entrepreneur?.email}}</option>
+      </select>
     </div>
     <div class="col-12">
       <label for="inputAddress" class="form-label">Geschäftsadresse</label>
