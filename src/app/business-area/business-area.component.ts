@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import { Component, DoCheck, OnInit} from '@angular/core';
 import {AuthService} from '@auth0/auth0-angular';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -6,7 +6,7 @@ import {path} from "../globals";
 import {IBusiness} from "../Business";
 import {IEntrepreneur} from "../Entrepreneur";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-business-area',
@@ -96,4 +96,5 @@ export class BusinessAreaComponent implements OnInit, DoCheck {
   refresh() {
     window.location.reload();
   }
+
 }

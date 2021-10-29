@@ -1,31 +1,31 @@
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a href="http://localhost:4200/" class="navbar-brand">MCard</a>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-
-        <div class="navbar-nav">
-          <a href="http://localhost:4200/" class="nav-item nav-link active">Suche</a>
-        </div>
-        <div class="navbar-nav ms-auto">
-          <div *ngIf="auth.user$ | async as user">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                 aria-expanded="false">{{user.email}}</a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="http://localhost:4200/app">Meine Speisekarten</a></li>
-                <li><a class="dropdown-item" href="http://localhost:4200/app">Mein Geschäft</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Profil</a></li>
-              </ul>
-            </li>
-          </div>
-          <app-auth-button></app-auth-button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="http://localhost:4200/">Mcard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="navbar-nav">
+        <a href="http://localhost:4200/" class="nav-item nav-link active">Suche</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <div *ngIf="auth.user$ | async as user">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+               aria-expanded="false">{{user.email}}</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="http://localhost:4200/app">Meine Speisekarten</a></li>
+              <li><a class="dropdown-item" href="http://localhost:4200/app">Mein Geschäft</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Profil</a></li>
+            </ul>
+          </li>
         </div>
       </div>
+      <app-auth-button></app-auth-button>
     </div>
-  </nav>
-</div>
-
+  </div>
+</nav>

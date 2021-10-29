@@ -9,7 +9,7 @@ import {IEntrepreneur} from "../Entrepreneur";
 })
 export class ProfileComponent implements OnInit {
 
-  @Input() profil: string |null=null;
+
   @Input() entrepreneur: IEntrepreneur | null = null;
 
   constructor() {
